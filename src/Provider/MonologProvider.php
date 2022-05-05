@@ -8,7 +8,7 @@ use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Nanofraim\Provider;
 
-class Monolog extends Provider
+class MonologProvider extends Provider
 {
     public function createService(): \Psr\Log\LoggerInterface
     {

@@ -11,7 +11,7 @@ return [
             'POST:/api' => [DummyController::class, 'postApi'],
         ],
     ],
-    \Nanofraim\Provider\Monolog::class => [
+    \Nanofraim\Provider\MonologProvider::class => [
         'path' => $storagePath.'/log/app.log',
         'format' => '%datetime% [%level_name%] %message%',
     ],
