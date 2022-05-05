@@ -6,7 +6,7 @@ namespace Nanofraim;
 
 use Tomrf\ConfigContainer\ConfigContainer;
 
-class ServiceProvider
+class Provider
 {
     public function __construct(
         protected ?ConfigContainer $config = null,

@@ -56,16 +56,16 @@ class Init
 
     public static function createServiceContainer(
         ConfigContainer $configContainer,
-        array $config,
+        array $providers,
     ): ServiceContainer {
         // create ServiceContainer, add ConfigContainer, Autowire and all configured services
         $serviceContainer = new ServiceContainer(self::$autowire);
         $serviceContainer->add(ConfigContainer::class, $configContainer);
         $serviceContainer->add(Autowire::class, self::$autowire);
 
-        foreach (array_keys($config['services']) as $class) {
+        foreach (array_keys($providers) as $class) {
             $serviceProvider = new $class(new ConfigContainer(
-                \is_array($config['services'][$class]) ? $config['services'][$class] : []
+                \is_array($providers[$class]) ? $providers[$class] : []
             ));
 
             $reflection = new ReflectionClass($serviceProvider);

@@ -13,7 +13,7 @@ return [
         'name' => 'session',
         'use_strict_mode' => '1',
         'sid_length' => '64',
-        'gc_probability' => '0', // @todo a way to expire sessions
+        'gc_probability' => '0',
         'save_handler' => 'files',
         'save_path' => $storagePath.'/session',
     ],

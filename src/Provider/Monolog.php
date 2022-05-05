@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Nanofraim\ServiceProvider;
+namespace Nanofraim\Provider;
 
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
-use Nanofraim\ServiceProvider;
+use Nanofraim\Provider;
 
-class Monolog extends ServiceProvider
+class Monolog extends Provider
 {
     public function createService(): \Psr\Log\LoggerInterface
     {

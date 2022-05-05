@@ -11,11 +11,11 @@ return [
             'POST:/api' => [DummyController::class, 'postApi'],
         ],
     ],
-    \Nanofraim\ServiceProvider\Monolog::class => [
-        'path' => $storagePath.'/logs/app.log',
+    \Nanofraim\Provider\Monolog::class => [
+        'path' => $storagePath.'/log/app.log',
         'format' => '%datetime% [%level_name%] %message%',
     ],
-    \Nanofraim\ServiceProvider\SimpleCacheProvider::class => [
+    \Nanofraim\Provider\SimpleCacheProvider::class => [
         'adapter' => 'filesystem',
         'adapters' => [
             'filesystem' => [
@@ -30,5 +30,5 @@ return [
             ],
         ],
     ],
-    \Nanofraim\ServiceProvider\ResponseFactoryProvider::class => null,
+    \Nanofraim\Provider\ResponseFactoryProvider::class => null,
 ];

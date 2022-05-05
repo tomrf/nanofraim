@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Nanofraim\ServiceProvider;
+namespace Nanofraim\Provider;
 
 use Nanofraim\Http\ResponseFactory;
-use Nanofraim\ServiceProvider;
+use Nanofraim\Provider;
 
-class ResponseFactoryProvider extends ServiceProvider
+class ResponseFactoryProvider extends Provider
 {
     public function createService(): ResponseFactory
     {

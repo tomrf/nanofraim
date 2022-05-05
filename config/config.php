@@ -11,6 +11,6 @@ return [
         \App\Http\Middleware\Router::class,
         \Nanofraim\Http\Middleware\NotFound::class,
     ],
-    'services' => require 'services.php',
+    'providers' => require 'providers.php',
     'phpIni' => require 'phpIni.php',
 ];

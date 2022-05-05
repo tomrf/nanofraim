@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Nanofraim\ServiceProvider;
+namespace Nanofraim\Provider;
 
 use Cache\Adapter\Filesystem\FilesystemCachePool;
 use Cache\Adapter\PHPArray\ArrayCachePool;
@@ -12,10 +12,10 @@ use Cache\Bridge\SimpleCache\SimpleCacheBridge;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 use Nanofraim\Exception\FrameworkException;
-use Nanofraim\ServiceProvider;
+use Nanofraim\Provider;
 use Psr\SimpleCache\CacheInterface;
 
-class SimpleCacheProvider extends ServiceProvider
+class SimpleCacheProvider extends Provider
 {
     public function createService(): CacheInterface
     {
