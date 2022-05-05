@@ -9,12 +9,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
-use Tomrf\ConfigContainer\ConfigContainer;
 
 class Session extends Middleware
 {
     public function __construct(
-        private ConfigContainer $config,
         private LoggerInterface $logger,
     ) {
     }

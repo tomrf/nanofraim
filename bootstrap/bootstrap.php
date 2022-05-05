@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Dotenv\Dotenv;
 use Nanofraim\Init;
 
 // set basePath and storagePath, referenced in configuration files
@@ -14,7 +13,7 @@ require $basePath.'/vendor/autoload.php';
 
 // load environment file if one exists
 if (file_exists($basePath.'/.env')) {
-    Dotenv::createImmutable($basePath)->load();
+    \Dotenv\Dotenv::createImmutable($basePath)->load();
 }
 
 // run Init::setup before initializing anything else
