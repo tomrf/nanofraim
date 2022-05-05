@@ -8,7 +8,7 @@ return [
     'middleware' => [
         \App\Http\Middleware\Headers::class,
         \App\Http\Middleware\Session::class,
-        \App\Http\Middleware\Dummy::class,
+        \App\Http\Middleware\Router::class,
         \Nanofraim\Http\Middleware\NotFound::class,
     ],
     'services' => require 'services.php',

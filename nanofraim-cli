@@ -10,7 +10,7 @@ $command = $argv[$optind + 0] ?? null;
 
 switch ($command) {
     case null:
-        echo 'Usage: Nanofraim-cli <command> [options]'.PHP_EOL;
+        echo 'Usage: nanofraim-cli <command> [options]'.PHP_EOL;
 
         exit(1);
 

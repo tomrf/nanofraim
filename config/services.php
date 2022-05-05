@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
+use App\Http\Controller\DummyController;
+
 return [
-    \Nanofraim\ServiceProvider\TwigEnvironment::class => [
-        'templatesPath' => $basePath.'/resource/template',
-        'cachePath' => $storagePath.'/cache/twig',
-        'cache' => false,
-        'debug' => true,
+    \App\Service\DummyRouter::class => [
+        'routes' => [
+            'GET:/' => [DummyController::class, 'getHome'],
+            'POST:/api' => [DummyController::class, 'postApi'],
+        ],
     ],
     \Nanofraim\ServiceProvider\Monolog::class => [
         'path' => $storagePath.'/logs/app.log',
@@ -28,4 +30,5 @@ return [
             ],
         ],
     ],
+    \Nanofraim\ServiceProvider\ResponseFactoryProvider::class => null,
 ];

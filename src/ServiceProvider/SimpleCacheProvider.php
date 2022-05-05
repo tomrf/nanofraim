@@ -19,10 +19,7 @@ class SimpleCacheProvider extends ServiceProvider
 {
     public function createService(): CacheInterface
     {
-        $cacheAdapter = $this->config->get(
-            'adapter',
-            'void',
-        );
+        $cacheAdapter = $this->config->get('adapter', 'void');
 
         switch ($cacheAdapter) {
             case 'redis':

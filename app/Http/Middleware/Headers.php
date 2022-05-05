@@ -17,6 +17,6 @@ class Headers extends Middleware
     ): ResponseInterface {
         $response = $handler->handle($request);
 
-        return $response->withHeader('X-Powered-By', 'secrets');
+        return $response->withHeader('X-Powered-By', 'http');
     }
 }

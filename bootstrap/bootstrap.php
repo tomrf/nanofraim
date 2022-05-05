@@ -19,39 +19,30 @@ if (file_exists($basePath.'/.env')) {
     Dotenv::createImmutable($basePath)->load();
 }
 
+// load configuration, create ConfigContainer
 $config = require $basePath.'/config/config.php';
-$configContainer = new \Tomrf\ConfigContainer\ConfigContainer(
+$configContainer = new ConfigContainer(
     $config
 );
 
+// set PHP ini options
 $configContainer->setPhpIniFromConfig(
     $config['phpIni']
 );
 
+// create Autowire instance
 $autowire = new Autowire();
+
+// create ServiceContainer, add ConfigContainer, Autowire and all configured services
 $serviceContainer = new ServiceContainer($autowire);
 $serviceContainer->add(ConfigContainer::class, $configContainer);
+$serviceContainer->add(Autowire::class, $autowire);
 
-$services = [];
-$serviceKeys = $configContainer->query('services.*');
-foreach ($serviceKeys as $key => $value) {
-    $tok = explode('.', $key);
-    $serviceName = $tok[1];
-    if (!in_array($serviceName, $services, true)) {
-        $services[] = $serviceName;
-    }
-}
-
-foreach ($services as $serviceProviderClass) {
-    $serviceConfig = $configContainer->query(sprintf('services.%s.*', $serviceProviderClass));
-    foreach ($serviceConfig as $key => $value) {
-        $name = str_replace(sprintf('services.%s.', $serviceProviderClass), '', $key);
-        $serviceConfig[$name] = $value;
-        unset($serviceConfig[$key]);
-    }
-
-    $serviceProvider = new $serviceProviderClass(
-        new ConfigContainer($serviceConfig)
+foreach (array_keys($config['services']) as $class) {
+    $serviceProvider = new $class(
+        new ConfigContainer(
+            is_array($config['services'][$class]) ? $config['services'][$class] : []
+        )
     );
 
     $reflection = new ReflectionClass($serviceProvider);
@@ -62,9 +53,14 @@ foreach ($services as $serviceProviderClass) {
     );
 }
 
+// create middleware queue using Autowire and ServiceContainer for dependencies
 $middlewareQueue = [];
 foreach ($config['middleware'] as $middleware) {
-    $middlewareQueue[] = $autowire->instantiateClass($middleware, '__construct', [$serviceContainer]);
+    $middlewareQueue[] = $autowire->instantiateClass(
+        $middleware,
+        '__construct',
+        [$serviceContainer]
+    );
 }
 
 return $middlewareQueue;
