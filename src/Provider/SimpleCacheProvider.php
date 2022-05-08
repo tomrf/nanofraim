@@ -11,11 +11,11 @@ use Cache\Adapter\Void\VoidCachePool;
 use Cache\Bridge\SimpleCache\SimpleCacheBridge;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
+use Nanofraim\AbstractProvider;
 use Nanofraim\Exception\FrameworkException;
-use Nanofraim\Provider;
 use Psr\SimpleCache\CacheInterface;
 
-class SimpleCacheProvider extends Provider
+class SimpleCacheProvider extends AbstractProvider
 {
     public function createService(): CacheInterface
     {

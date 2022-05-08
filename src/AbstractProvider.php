@@ -6,10 +6,10 @@ namespace Nanofraim;
 
 use Tomrf\ConfigContainer\ConfigContainer;
 
-class Provider
+abstract class AbstractProvider
 {
     public function __construct(
-        protected ?ConfigContainer $config = null,
+        protected ConfigContainer $config,
     ) {
     }
 }

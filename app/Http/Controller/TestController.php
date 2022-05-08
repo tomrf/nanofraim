@@ -7,12 +7,12 @@ namespace App\Http\Controller;
 use Nanofraim\Http\AbstractController;
 use Psr\Http\Message\ResponseInterface;
 
-class DummyController extends AbstractController
+class TestController extends AbstractController
 {
     public function getHome(): ResponseInterface
     {
         $response = $this->responseFactory->createResponse();
-        $response->getBody()->write(sprintf("Hello world! PHP version %s\n", PHP_VERSION));
+        $response->getBody()->write("Hello world!\n");
 
         return $response;
     }
@@ -23,8 +23,8 @@ class DummyController extends AbstractController
         $response->getBody()->write(json_encode([
             'success' => true,
             'method' => $this->request->getMethod(),
-            'random_number' => random_int(PHP_INT_MIN, PHP_INT_MAX),
-        ]));
+            'controller' => static::class,
+        ]).PHP_EOL);
 
         return $response->withHeader('Content-type', 'application/json; charset=utf-8');
     }

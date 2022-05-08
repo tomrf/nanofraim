@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Http\Controller\DummyController;
+use App\Http\Controller\TestController;
 
 return [
+    \Nanofraim\Provider\ResponseFactoryProvider::class => null,
+    \Nanofraim\Provider\SessionProvider::class => null,
     \App\Service\DummyRouter::class => [
         'routes' => [
-            'GET:/' => [DummyController::class, 'getHome'],
-            'POST:/api' => [DummyController::class, 'postApi'],
+            'GET:/' => [TestController::class, 'getHome'],
+            'POST:/api' => [TestController::class, 'postApi'],
         ],
     ],
     \Nanofraim\Provider\LoggerProvider::class => [
@@ -29,6 +31,4 @@ return [
             ],
         ],
     ],
-    \Nanofraim\Provider\ResponseFactoryProvider::class => null,
-    \Nanofraim\Provider\SessionProvider::class => null,
 ];

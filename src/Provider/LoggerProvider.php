@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Nanofraim\Provider;
 
-use Nanofraim\Provider;
+use Nanofraim\AbstractProvider;
 use Tomrf\Logger\Logger;
 
-class LoggerProvider extends Provider
+class LoggerProvider extends AbstractProvider
 {
     public function createService(): \Psr\Log\LoggerInterface
     {

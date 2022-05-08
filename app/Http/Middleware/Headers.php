@@ -17,6 +17,16 @@ class Headers extends AbstractMiddleware
     ): ResponseInterface {
         $response = $handler->handle($request);
 
-        return $response->withHeader('X-Powered-By', 'http');
+        return $response
+            // security headers, strict defaults
+            ->withHeader('Content-Security-Policy', "default-src: 'self';")
+            ->withHeader('Referrer-Policy', 'strict-origin-when-cross-origin')
+            ->withHeader('Strict-Transport-Security', 'max-age=15768000')
+            ->withHeader('X-XSS-Protection', '1; mode=block')
+            ->withHeader('X-Content-Type-Options', 'nosniff')
+            ->withHeader('X-Frame-Options', 'DENY')
+            // informational headers
+            ->withHeader('X-Powered-By', 'http')
+        ;
     }
 }
