@@ -12,6 +12,19 @@ class SapiEmitter
 
     public function emit(ResponseInterface $response): void
     {
+        $this->setHeaders($response);
+
+        if (\PHP_SAPI === 'cli') {
+            $this->emitToCli($response);
+
+            return;
+        }
+
+        $this->emitBody($response);
+    }
+
+    private function setHeaders(ResponseInterface $response): void
+    {
         header(sprintf(
             'HTTP/%s %d %s',
             $response->getProtocolVersion(),
@@ -22,14 +35,6 @@ class SapiEmitter
         foreach ($response->getHeaders() as $key => $values) {
             header($key.': '.implode(', ', $values));
         }
-
-        if (\PHP_SAPI === 'cli') {
-            $this->emitToCli($response);
-
-            return;
-        }
-
-        $this->emitBody($response);
     }
 
     private function emitToCli(ResponseInterface $response): void
