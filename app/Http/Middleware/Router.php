@@ -7,14 +7,20 @@ namespace App\Http\Middleware;
 use App\Service\DummyRouter;
 use Nanofraim\Http\Middleware;
 use Nanofraim\Http\ResponseFactory;
+use Nanofraim\Interface\ServiceContainerAwareInterface;
+use Nanofraim\Trait\ServiceContainerAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Log\LoggerAwareTrait;
 use Tomrf\Autowire\Autowire;
 use Tomrf\Autowire\Container;
 
-class Router extends Middleware
+class Router extends Middleware implements ServiceContainerAwareInterface
 {
+    use LoggerAwareTrait;
+    use ServiceContainerAwareTrait;
+
     public function __construct(
         private DummyRouter $router,
         private Autowire $autowire,
@@ -40,9 +46,10 @@ class Router extends Middleware
 
         $container = new Container();
         $container->set(ServerRequestInterface::class, $request);
-        $container->set(ResponseFactory::class, $this->responseFactory);
 
-        $controller = $this->autowire->instantiateClass($class, '__construct', [$container]);
+        $controller = $this->autowire->instantiateClass($class, '__construct', [$container, $this->serviceContainer]);
+
+        $this->serviceContainer->fulfillAwaressTraits($controller);
 
         return $controller->{$method}();
     }

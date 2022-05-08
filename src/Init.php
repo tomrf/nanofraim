@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nanofraim;
 
+use Nanofraim\Interface\ServiceContainerAwareInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionClass;
 use Tomrf\Autowire\Autowire;
@@ -38,11 +39,18 @@ class Init
     ): array {
         $middlewareQueue = [];
         foreach ($middleware as $class) {
-            $middlewareQueue[] = self::$autowire->instantiateClass(
+            $instance = self::$autowire->instantiateClass(
                 $class,
                 '__construct',
                 [$serviceContainer]
             );
+
+            if ($instance instanceof ServiceContainerAwareInterface
+            && method_exists($instance, 'setServiceContainer')) {
+                $instance->setServiceContainer($serviceContainer);
+            }
+
+            $middlewareQueue[] = $instance;
         }
 
         return $middlewareQueue;

@@ -13,7 +13,10 @@ require $basePath.'/vendor/autoload.php';
 
 // load environment file if one exists
 if (file_exists($basePath.'/.env')) {
-    \Dotenv\Dotenv::createImmutable($basePath)->load();
+    $env = parse_ini_file($basePath.'/.env', true, INI_SCANNER_TYPED);
+    foreach ($env as $key => $value) {
+        $_ENV[$key] = $value;
+    }
 }
 
 // run Init::setup before initializing anything else

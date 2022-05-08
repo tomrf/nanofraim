@@ -6,13 +6,18 @@ namespace App\Http\Controller;
 
 use Nanofraim\Http\Controller;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
-class DummyController extends Controller
+class DummyController extends Controller implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     public function getHome(): ResponseInterface
     {
         $response = $this->responseFactory->createResponse();
         $response->getBody()->write(sprintf("Hello world! PHP version %s\n", PHP_VERSION));
+        $this->logger->debug('got requez!');
 
         return $response;
     }
