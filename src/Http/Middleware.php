@@ -8,9 +8,18 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
-abstract class Middleware implements MiddlewareInterface
+abstract class Middleware implements MiddlewareInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+    public function __construct(
+        protected ResponseFactory $responseFactory
+    ) {
+    }
+
     abstract public function process(
         ServerRequestInterface $request,
         RequestHandlerInterface $handler

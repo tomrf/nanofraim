@@ -11,12 +11,10 @@ use Nanofraim\Trait\ServiceContainerAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Log\LoggerAwareTrait;
 use Tomrf\Autowire\Container;
 
 class Router extends Middleware implements ServiceContainerAwareInterface
 {
-    use LoggerAwareTrait;
     use ServiceContainerAwareTrait;
 
     public function __construct(

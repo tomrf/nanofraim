@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Nanofraim;
 
 use Nanofraim\Interface\ServiceContainerAwareInterface;
+use Nanofraim\Interface\SessionAwareInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use ReflectionClass;
 use Tomrf\Autowire\Autowire;
 use Tomrf\ConfigContainer\ConfigContainer;
 use Tomrf\ServiceContainer\ServiceContainer;
+use Tomrf\Session\Session;
 
 class Init
 {
@@ -47,6 +51,14 @@ class Init
 
             if ($instance instanceof ServiceContainerAwareInterface) {
                 $instance->setServiceContainer($serviceContainer);
+            }
+
+            if ($instance instanceof LoggerAwareInterface) {
+                $instance->setLogger($serviceContainer->get(LoggerInterface::class));
+            }
+
+            if ($instance instanceof SessionAwareInterface) {
+                $instance->setSession($serviceContainer->get(Session::class));
             }
 
             $middlewareQueue[] = $instance;

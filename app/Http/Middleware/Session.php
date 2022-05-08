@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use Nanofraim\Http\Middleware;
+use Nanofraim\Interface\SessionAwareInterface;
+use Nanofraim\Trait\SessionAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Log\LoggerInterface;
-use Tomrf\Session\Session as SessionService;
 
-class Session extends Middleware
+class Session extends Middleware implements SessionAwareInterface
 {
-    public function __construct(
-        private LoggerInterface $logger,
-        private SessionService $session,
-    ) {
-    }
+    use SessionAwareTrait;
 
     public function process(
         ServerRequestInterface $request,
@@ -26,6 +22,11 @@ class Session extends Middleware
         if (true === $request->hasHeader('cookie')) {
             try {
                 $this->session->startSession();
+
+                /** @var \Tomrf\Logger\Logger */
+                $logger = $this->logger;
+
+                $logger->truncateStream();
             } catch (\Exception $exception) {
                 $this->logger->critical('Failed to start PHP session: '.$exception);
             }
