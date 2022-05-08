@@ -6,6 +6,7 @@ namespace Nanofraim;
 
 use Nanofraim\Interface\ServiceContainerAwareInterface;
 use Nanofraim\Interface\SessionAwareInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -96,5 +97,12 @@ class Init
         }
 
         return $serviceContainer;
+    }
+
+    public static function runMiddlewareQueue(
+        array $middlewareQueue,
+        ServerRequestInterface $request
+    ): ResponseInterface {
+        return (new \Relay\Relay($middlewareQueue))->handle($request);
     }
 }
