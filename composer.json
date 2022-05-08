@@ -15,8 +15,9 @@
         "cache/void-adapter": "^1.2",
         "tomrf/autowire": "^0.0.5",
         "tomrf/configcontainer": "^0.0.2",
-        "tomrf/servicecontainer": "^0.0.3",
+        "tomrf/servicecontainer": "^0.0.4",
         "tomrf/logger": "^0.0.1",
+        "tomrf/session": "^0.0.1",
         "nyholm/psr7-server": "^1.0",
         "nyholm/psr7": "^1.5",
         "relay/relay": "^2.1"

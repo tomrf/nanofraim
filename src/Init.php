@@ -45,8 +45,7 @@ class Init
                 [$serviceContainer]
             );
 
-            if ($instance instanceof ServiceContainerAwareInterface
-            && method_exists($instance, 'setServiceContainer')) {
+            if ($instance instanceof ServiceContainerAwareInterface) {
                 $instance->setServiceContainer($serviceContainer);
             }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b7b39b5a1231ffda1898a220301a37a",
+    "content-hash": "4a48af74839846451ac971727a59674c",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1532,16 +1532,16 @@
         },
         {
             "name": "tomrf/servicecontainer",
-            "version": "0.0.3",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/servicecontainer.git",
-                "reference": "b9a8c02b22f60961203919ed775699aae0c0fd89"
+                "reference": "e4fa5929b74e02f74f4d648e62c1bab68cc86af2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/b9a8c02b22f60961203919ed775699aae0c0fd89",
-                "reference": "b9a8c02b22f60961203919ed775699aae0c0fd89",
+                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/e4fa5929b74e02f74f4d648e62c1bab68cc86af2",
+                "reference": "e4fa5929b74e02f74f4d648e62c1bab68cc86af2",
                 "shasum": ""
             },
             "require": {
@@ -1572,9 +1572,53 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/servicecontainer/issues",
-                "source": "https://github.com/tomrf/servicecontainer/tree/0.0.3"
+                "source": "https://github.com/tomrf/servicecontainer/tree/0.0.4"
             },
-            "time": "2022-05-08T11:02:19+00:00"
+            "time": "2022-05-08T17:11:04+00:00"
+        },
+        {
+            "name": "tomrf/session",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomrf/session.git",
+                "reference": "611b5f1195a68bd172aef5c2a271b2d69d5a1100"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomrf/session/zipball/611b5f1195a68bd172aef5c2a271b2d69d5a1100",
+                "reference": "611b5f1195a68bd172aef5c2a271b2d69d5a1100",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "phpstan/phpstan": "^1.6",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tomrf\\Session\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "simple session helper",
+            "homepage": "http://github.com/tomrf/session",
+            "keywords": [
+                "session"
+            ],
+            "support": {
+                "issues": "https://github.com/tomrf/session/issues",
+                "source": "https://github.com/tomrf/session/tree/0.0.1"
+            },
+            "time": "2022-05-08T16:54:41+00:00"
         }
     ],
     "packages-dev": [

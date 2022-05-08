@@ -30,4 +30,5 @@ return [
         ],
     ],
     \Nanofraim\Provider\ResponseFactoryProvider::class => null,
+    \Nanofraim\Provider\SessionProvider::class => null,
 ];

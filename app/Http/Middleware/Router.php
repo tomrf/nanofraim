@@ -47,7 +47,11 @@ class Router extends Middleware implements ServiceContainerAwareInterface
         $container = new Container();
         $container->set(ServerRequestInterface::class, $request);
 
-        $controller = $this->autowire->instantiateClass($class, '__construct', [$container, $this->serviceContainer]);
+        $controller = $this->serviceContainer->autowire()->instantiateClass(
+            $class,
+            '__construct',
+            [$container, $this->serviceContainer]
+        );
 
         $this->serviceContainer->fulfillAwaressTraits($controller);
 

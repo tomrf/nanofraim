@@ -9,11 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
+use Tomrf\Session\Session as SessionService;
 
 class Session extends Middleware
 {
     public function __construct(
         private LoggerInterface $logger,
+        private SessionService $session,
     ) {
     }
 
@@ -21,12 +23,16 @@ class Session extends Middleware
         ServerRequestInterface $request,
         RequestHandlerInterface $handler,
     ): ResponseInterface {
-        try {
-            if (PHP_SESSION_NONE === session_status()) {
-                session_start();
+        if (true === $request->hasHeader('cookie')) {
+            try {
+                $this->session->startSession();
+            } catch (\Exception $exception) {
+                $this->logger->critical('Failed to start PHP session: '.$exception);
             }
-        } catch (\Exception $exception) {
-            $this->logger->critical('Failed to start PHP session: '.$exception);
+
+            if ('GET' === $request->getMethod()) {
+                $this->session->closeWrite();
+            }
         }
 
         return $handler->handle($request);

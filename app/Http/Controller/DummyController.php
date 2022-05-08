@@ -17,7 +17,6 @@ class DummyController extends Controller implements LoggerAwareInterface
     {
         $response = $this->responseFactory->createResponse();
         $response->getBody()->write(sprintf("Hello world! PHP version %s\n", PHP_VERSION));
-        $this->logger->debug('got requez!');
 
         return $response;
     }
