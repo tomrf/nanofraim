@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use Nanofraim\Http\Middleware;
+use Nanofraim\Http\AbstractMiddleware;
 use Nanofraim\Interface\SessionAwareInterface;
 use Nanofraim\Trait\SessionAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class Session extends Middleware implements SessionAwareInterface
+class Session extends AbstractMiddleware implements SessionAwareInterface
 {
     use SessionAwareTrait;
 

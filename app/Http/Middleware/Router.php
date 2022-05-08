@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Service\DummyRouter;
-use Nanofraim\Http\Middleware;
+use Nanofraim\Http\AbstractMiddleware;
 use Nanofraim\Interface\ServiceContainerAwareInterface;
 use Nanofraim\Trait\ServiceContainerAwareTrait;
 use Psr\Http\Message\ResponseInterface;
@@ -13,7 +13,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Tomrf\Autowire\Container;
 
-class Router extends Middleware implements ServiceContainerAwareInterface
+class Router extends AbstractMiddleware implements ServiceContainerAwareInterface
 {
     use ServiceContainerAwareTrait;
 

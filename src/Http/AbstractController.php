@@ -12,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 
-abstract class Controller implements CacheAwareInterface, LoggerAwareInterface, SessionAwareInterface
+abstract class AbstractController implements CacheAwareInterface, LoggerAwareInterface, SessionAwareInterface
 {
     use CacheAwareTrait;
     use LoggerAwareTrait;

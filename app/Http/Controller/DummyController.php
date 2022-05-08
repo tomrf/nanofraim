@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controller;
 
-use Nanofraim\Http\Controller;
+use Nanofraim\Http\AbstractController;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
 
-class DummyController extends Controller implements LoggerAwareInterface
+class DummyController extends AbstractController
 {
-    use LoggerAwareTrait;
-
     public function getHome(): ResponseInterface
     {
         $response = $this->responseFactory->createResponse();

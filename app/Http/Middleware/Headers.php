@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use Nanofraim\Http\Middleware;
+use Nanofraim\Http\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class Headers extends Middleware
+class Headers extends AbstractMiddleware
 {
     public function process(
         ServerRequestInterface $request,
