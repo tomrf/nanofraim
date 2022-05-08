@@ -48,6 +48,132 @@ switch ($command) {
 
         exit(0);
 
+        case 'bench':
+            $path = $argv[$optind + 1] ?? null;
+            $method = $argv[$optind + 2] ?? 'GET';
+            $count = $argv[$optind + 3] ?? 10000;
+
+            if (!$path) {
+                error('no path specified for request');
+            }
+
+            if (!is_file('public/index.php')) {
+                error('cannot find public/index.php -- must run from project root');
+            }
+
+            $_SERVER['REQUEST_URI'] = $path;
+            $_SERVER['REQUEST_METHOD'] = strtoupper($method);
+
+            chdir('public/');
+
+            $statStatus = [
+                200 => 0,
+                'all' => 0,
+            ];
+            $statTime = [
+                'tot' => 0,
+                'min' => PHP_INT_MAX,
+                'max' => PHP_INT_MIN,
+                'avg' => null,
+                'first' => null,
+            ];
+            $statMemory = [
+                'peak' => null,
+                'real' => null,
+            ];
+
+            for ($n = 0; $n < $count; ++$n) {
+                $timetamp = microtime(true);
+
+                $middlewareQueue = require '../bootstrap/bootstrap.php';
+
+                $response = \Nanofraim\Init::runMiddlewareQueue(
+                    $middlewareQueue,
+                    \Nanofraim\Init::createServerRequest()
+                );
+
+                $status = $response->getStatusCode();
+                $body = $response->getBody();
+
+                // stat time
+                $requestTime = (microtime(true) - (float) $timetamp) * 1000;
+                $statTime['tot'] = $statTime['tot'] + $requestTime;
+
+                if (null === $statTime['first']) {
+                    $statTime['first'] = $requestTime;
+                } else {
+                    if ($requestTime > $statTime['max']) {
+                        $statTime['max'] = $requestTime;
+                    }
+                    if ($requestTime < $statTime['min']) {
+                        $statTime['min'] = $requestTime;
+                    }
+                }
+
+                // stat status
+                $statStatus['all'] = $statStatus['all'] + 1;
+                if (!isset($statStatus[$status])) {
+                    $statStatus[$status] = 1;
+                } else {
+                    $statStatus[$status] = $statStatus[$status] + 1;
+                }
+
+                if (($statStatus['all'] % 1000) === 0) {
+                    fwrite(STDERR, sprintf("\rBenchmarking: %d requests completed.. ", $statStatus['all']));
+                }
+            }
+
+            // finalize stat time
+            $statTime['avg'] = $statTime['tot'] / $statStatus['all'];
+
+            // finalize stat memory
+            $statMemory['peak'] = memory_get_peak_usage();
+            $statMemory['real'] = memory_get_peak_usage(true);
+
+            echo sprintf(
+                "\n\nBenchmark results\n    Path: %s\n  Method: %s\n\n",
+                $path,
+                strtoupper($method)
+            );
+
+            echo sprintf(
+                "Requests: %d\n Success: %.2f%% (%d/%d)\n\n",
+                $statStatus['all'],
+                $statStatus[200] / $statStatus['all'] * 100,
+                $statStatus[200],
+                $statStatus['all'] - $statStatus[200]
+            );
+
+            echo "HTTP status\n";
+
+            foreach ($statStatus as $status => $count) {
+                if (is_int($status)) {
+                    echo sprintf("     %d: %d\n", $status, $count);
+                }
+            }
+
+            echo sprintf(
+                "\nTiming (ms)\n".
+                "   Total: %8.2f\n".
+                "   First: %8.2f\n".
+                "     Max: %8.2f\n".
+                "     Min: %8.2f\n".
+                "     Avg: %8.2f\n\n",
+                $statTime['tot'],
+                $statTime['first'],
+                $statTime['max'],
+                $statTime['min'],
+                $statTime['avg']
+            );
+
+            echo sprintf(
+                "Memory usage (MB)\n    Peak: %8.2f\n    Real: %8.2f\n",
+                memory_get_peak_usage() / 1000 / 1000,
+                memory_get_peak_usage(true) / 1000 / 1000,
+            );
+
+            exit(0);
+
     default:
         error('unknown command: '.$command);
 }
