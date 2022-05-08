@@ -6,14 +6,12 @@ namespace App\Http\Middleware;
 
 use App\Service\DummyRouter;
 use Nanofraim\Http\Middleware;
-use Nanofraim\Http\ResponseFactory;
 use Nanofraim\Interface\ServiceContainerAwareInterface;
 use Nanofraim\Trait\ServiceContainerAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerAwareTrait;
-use Tomrf\Autowire\Autowire;
 use Tomrf\Autowire\Container;
 
 class Router extends Middleware implements ServiceContainerAwareInterface
@@ -23,8 +21,6 @@ class Router extends Middleware implements ServiceContainerAwareInterface
 
     public function __construct(
         private DummyRouter $router,
-        private Autowire $autowire,
-        private ResponseFactory $responseFactory,
     ) {
     }
 
