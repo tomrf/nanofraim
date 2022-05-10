@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Nanofraim\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Nanofraim\Http\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
@@ -16,7 +16,7 @@ class NotFound extends AbstractMiddleware
         RequestHandlerInterface $handler,
     ): ResponseInterface {
         $response = $this->responseFactory->createResponse()->withStatus(404);
-        $response->getBody()->write('HTTP 404 Not Found'.PHP_EOL);
+        $response->getBody()->write("HTTP 404 Not Found\n");
 
         return $response;
     }

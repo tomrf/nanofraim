@@ -9,7 +9,7 @@ return [
         \App\Http\Middleware\Headers::class,
         \App\Http\Middleware\Session::class,
         \App\Http\Middleware\Router::class,
-        \Nanofraim\Http\Middleware\NotFound::class,
+        \App\Http\Middleware\NotFound::class,
     ],
     'providers' => require 'providers.php',
     'phpIni' => require 'phpIni.php',
