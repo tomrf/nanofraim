@@ -27,7 +27,8 @@ $configContainer->setPhpIniFromConfig($config['phpIni']);
 // create ServiceContainer
 $serviceContainer = Init::createServiceContainer(
     $configContainer,
-    $config['providers']
+    $config['providers'],
+    $config['middleware'],
 );
 
 // create middleware queue using ServiceContainer for dependencies

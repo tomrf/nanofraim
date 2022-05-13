@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Service\DummyRouter as ServiceDummyRouter;
+use Nanofraim\AbstractProvider;
 use Tomrf\ConfigContainer\ConfigContainer;
 
-class DummyRouter
+class DummyRouter extends AbstractProvider
 {
     public function __construct(
         protected ConfigContainer $config
