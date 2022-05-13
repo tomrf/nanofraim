@@ -17,8 +17,6 @@ use Tomrf\Session\Session;
 
 class Init
 {
-    private static Autowire $autowire;
-
     public static function loadDotEnv(string $path): void
     {
         if (file_exists($path)) {

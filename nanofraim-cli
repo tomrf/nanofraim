@@ -87,9 +87,8 @@ switch ($command) {
 
                 $middlewareQueue = require '../bootstrap/bootstrap.php';
 
-                $response = \Nanofraim\Init::runMiddlewareQueue(
-                    $middlewareQueue,
-                    \Nanofraim\Init::createServerRequest()
+                $response = $app->handle(
+                    $app->createServerRequestFromGlobals()
                 );
 
                 $status = $response->getStatusCode();
