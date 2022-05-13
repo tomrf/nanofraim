@@ -50,23 +50,23 @@ class Router extends AbstractMiddleware implements ServiceContainerAwareInterfac
             [$container, $this->serviceContainer]
         );
 
-        foreach (class_uses($controller) as $trait) {
-            if ('Nanofraim\Trait\ServiceContainerAwareTrait' === $trait) {
-                $controller->setServiceContainer($this->serviceContainer);
-            }
-
-            if ('Psr\Log\LoggerAwareTrait' === $trait) {
-                $controller->setLogger($this->serviceContainer->get(LoggerInterface::class));
-            }
-
-            if ('Nanofraim\Trait\SessionAwareTrait' === $trait) {
-                $controller->setSession($this->serviceContainer->get(Session::class));
-            }
-
-            if ('Nanofraim\Trait\CacheAwareTrait' === $trait) {
-                $controller->setCache($this->serviceContainer->get(CacheInterface::class));
-            }
-        }
+        $this->serviceContainer->fulfillAwarenessTraits(
+            $controller,
+            [
+                'Nanofraim\Trait\ServiceContainerAwareTrait' => [
+                    'setServiceContainer' => fn () => $this->serviceContainer,
+                ],
+                'Psr\Log\LoggerAwareTrait' => [
+                    'setLogger' => LoggerInterface::class,
+                ],
+                'Nanofraim\Trait\CacheAwareTrait' => [
+                    'setCache' => CacheInterface::class,
+                ],
+                'Nanofraim\Trait\SessionAwareTrait' => [
+                    'setSession' => Session::class,
+                ],
+            ]
+        );
 
         return $controller->{$method}();
     }

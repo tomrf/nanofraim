@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc95b13b6085540b5132883a49e61b6c",
+    "content-hash": "03e1a10101d3b3e4e0932f1a964e0d76",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1532,16 +1532,16 @@
         },
         {
             "name": "tomrf/servicecontainer",
-            "version": "0.0.5",
+            "version": "0.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/servicecontainer.git",
-                "reference": "305c5669ed2335c028526fca8ddbd0f2a09e7bb4"
+                "reference": "f2661fe9343241a840120cde4c5e534c63d619ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/305c5669ed2335c028526fca8ddbd0f2a09e7bb4",
-                "reference": "305c5669ed2335c028526fca8ddbd0f2a09e7bb4",
+                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/f2661fe9343241a840120cde4c5e534c63d619ce",
+                "reference": "f2661fe9343241a840120cde4c5e534c63d619ce",
                 "shasum": ""
             },
             "require": {
@@ -1573,9 +1573,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/servicecontainer/issues",
-                "source": "https://github.com/tomrf/servicecontainer/tree/0.0.5"
+                "source": "https://github.com/tomrf/servicecontainer/tree/0.0.7"
             },
-            "time": "2022-05-13T00:42:06+00:00"
+            "time": "2022-05-13T17:12:49+00:00"
         },
         {
             "name": "tomrf/session",

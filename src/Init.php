@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Nanofraim;
 
-use Nanofraim\Interface\ServiceContainerAwareInterface;
-use Nanofraim\Interface\SessionAwareInterface;
-use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use ReflectionClass;
 use Tomrf\Autowire\Autowire;
@@ -35,17 +32,23 @@ class Init
         foreach ($middleware as $class) {
             $instance = $serviceContainer->get($class);
 
-            if ($instance instanceof ServiceContainerAwareInterface) {
-                $instance->setServiceContainer($serviceContainer);
-            }
-
-            if ($instance instanceof LoggerAwareInterface) {
-                $instance->setLogger($serviceContainer->get(LoggerInterface::class));
-            }
-
-            if ($instance instanceof SessionAwareInterface) {
-                $instance->setSession($serviceContainer->get(Session::class));
-            }
+            $serviceContainer->fulfillAwarenessTraits(
+                $instance,
+                [
+                    'Nanofraim\Trait\ServiceContainerAwareTrait' => [
+                        'setServiceContainer' => fn () => $serviceContainer,
+                    ],
+                    'Psr\Log\LoggerAwareTrait' => [
+                        'setLogger' => LoggerInterface::class,
+                    ],
+                    'Nanofraim\Trait\CacheAwareTrait' => [
+                        'setCache' => CacheInterface::class,
+                    ],
+                    'Nanofraim\Trait\SessionAwareTrait' => [
+                        'setSession' => Session::class,
+                    ],
+                ]
+            );
 
             $middlewareQueue[] = $instance;
         }
