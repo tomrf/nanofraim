@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "500f73b3937dee5f6e688b69b0e7053e",
+    "content-hash": "bc95b13b6085540b5132883a49e61b6c",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1532,16 +1532,16 @@
         },
         {
             "name": "tomrf/servicecontainer",
-            "version": "0.0.4",
+            "version": "0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/servicecontainer.git",
-                "reference": "e4fa5929b74e02f74f4d648e62c1bab68cc86af2"
+                "reference": "305c5669ed2335c028526fca8ddbd0f2a09e7bb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/e4fa5929b74e02f74f4d648e62c1bab68cc86af2",
-                "reference": "e4fa5929b74e02f74f4d648e62c1bab68cc86af2",
+                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/305c5669ed2335c028526fca8ddbd0f2a09e7bb4",
+                "reference": "305c5669ed2335c028526fca8ddbd0f2a09e7bb4",
                 "shasum": ""
             },
             "require": {
@@ -1551,6 +1551,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8",
+                "phpmd/phpmd": "^2.12",
                 "phpstan/phpstan": "^1.6",
                 "phpunit/phpunit": "^9.5",
                 "roave/security-advisories": "dev-latest"
@@ -1572,9 +1573,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/servicecontainer/issues",
-                "source": "https://github.com/tomrf/servicecontainer/tree/0.0.4"
+                "source": "https://github.com/tomrf/servicecontainer/tree/0.0.5"
             },
-            "time": "2022-05-08T17:11:04+00:00"
+            "time": "2022-05-13T00:42:06+00:00"
         },
         {
             "name": "tomrf/session",
@@ -2654,16 +2655,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.6.7",
+            "version": "1.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "d41c39cb2e487663bce9bbd97c660e244b73abad"
+                "reference": "d76498c5531232cb8386ceb6004f7e013138d3ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d41c39cb2e487663bce9bbd97c660e244b73abad",
-                "reference": "d41c39cb2e487663bce9bbd97c660e244b73abad",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d76498c5531232cb8386ceb6004f7e013138d3ba",
+                "reference": "d76498c5531232cb8386ceb6004f7e013138d3ba",
                 "shasum": ""
             },
             "require": {
@@ -2689,7 +2690,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.6.7"
+                "source": "https://github.com/phpstan/phpstan/tree/1.6.8"
             },
             "funding": [
                 {
@@ -2709,7 +2710,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-04T22:55:41+00:00"
+            "time": "2022-05-10T06:54:21+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3188,12 +3189,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "c99945852fb9e9de3bc89c90f24b4c8ef47668fd"
+                "reference": "2ed308386e65cafaadd54723f5b57775374c2ae8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c99945852fb9e9de3bc89c90f24b4c8ef47668fd",
-                "reference": "c99945852fb9e9de3bc89c90f24b4c8ef47668fd",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2ed308386e65cafaadd54723f5b57775374c2ae8",
+                "reference": "2ed308386e65cafaadd54723f5b57775374c2ae8",
                 "shasum": ""
             },
             "conflict": {
@@ -3230,7 +3231,7 @@
                 "bugsnag/bugsnag-laravel": ">=2,<2.0.2",
                 "bytefury/crater": "<6.0.2",
                 "cachethq/cachet": "<2.5.1",
-                "cakephp/cakephp": "<4.0.6",
+                "cakephp/cakephp": "<3.10.3|>=4,<4.0.6",
                 "cardgate/magento2": "<2.0.33",
                 "cart2quote/module-quotation": ">=4.1.6,<=4.4.5|>=5,<5.4.4",
                 "cartalyst/sentry": "<=2.1.6",
@@ -3670,7 +3671,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-06T13:19:01+00:00"
+            "time": "2022-05-11T11:06:18+00:00"
         },
         {
             "name": "sebastian/cli-parser",

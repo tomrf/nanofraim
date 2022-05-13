@@ -47,7 +47,7 @@ class Router extends AbstractMiddleware implements ServiceContainerAwareInterfac
             [$container, $this->serviceContainer]
         );
 
-        $this->serviceContainer->fulfillAwaressTraits($controller);
+        $this->serviceContainer->fulfillAwarenessTraits($controller);
 
         return $controller->{$method}();
     }

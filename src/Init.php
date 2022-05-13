@@ -25,6 +25,16 @@ class Init
         self::$autowire = new Autowire();
     }
 
+    public static function loadDotEnv(string $path): void
+    {
+        if (file_exists($path)) {
+            $env = parse_ini_file($path, true, INI_SCANNER_TYPED);
+            foreach ($env as $key => $value) {
+                $_ENV[$key] = $value;
+            }
+        }
+    }
+
     public static function createServerRequest(): ServerRequestInterface
     {
         $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
