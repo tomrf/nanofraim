@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Nanofraim\Application;
+use Nanofraim\DotEnv;
 use Nanofraim\Http\SapiEmitter;
 use Nanofraim\Init;
 use Relay\Relay;
@@ -15,7 +16,7 @@ $storagePath = $basePath.'/storage';
 require $basePath.'/vendor/autoload.php';
 
 // load environment file if one exists, keeping existing variables
-Init::loadDotEnv($basePath.'/.env');
+DotEnv::loadDotEnv($basePath.'/.env');
 
 // load configuration, create ConfigContainer
 $config = require $basePath.'/config/config.php';
