@@ -6,8 +6,6 @@ namespace Nanofraim;
 
 use Nanofraim\Interface\ServiceContainerAwareInterface;
 use Nanofraim\Interface\SessionAwareInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use ReflectionClass;
@@ -21,11 +19,6 @@ class Init
 {
     private static Autowire $autowire;
 
-    public static function setup(): void
-    {
-        self::$autowire = new Autowire();
-    }
-
     public static function loadDotEnv(string $path): void
     {
         if (file_exists($path)) {
@@ -34,19 +27,6 @@ class Init
                 $_ENV[$key] = $value;
             }
         }
-    }
-
-    public static function createServerRequest(): ServerRequestInterface
-    {
-        $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
-
-        // return PSR-7 ServerRequest from globals
-        return (new \Nyholm\Psr7Server\ServerRequestCreator(
-            $psr17Factory, // ServerRequestFactory
-            $psr17Factory, // UriFactory
-            $psr17Factory, // UploadedFileFactory
-            $psr17Factory  // StreamFactory
-        ))->fromGlobals();
     }
 
     public static function createMiddlewareQueue(
@@ -86,10 +66,10 @@ class Init
         array $providers,
         array $middleware,
     ): ServiceContainer {
-        $serviceContainer = new ServiceContainer(self::$autowire);
+        $serviceContainer = new ServiceContainer(new Autowire());
 
         $serviceContainer->add(ConfigContainer::class, $configContainer);
-        $serviceContainer->add(Autowire::class, self::$autowire);
+        $serviceContainer->add(Autowire::class, new Autowire());
 
         foreach (array_merge(array_keys($providers), $middleware) as $class) {
             if (is_subclass_of($class, AbstractProvider::class)) {
@@ -112,12 +92,5 @@ class Init
         }
 
         return $serviceContainer;
-    }
-
-    public static function runMiddlewareQueue(
-        array $middlewareQueue,
-        ServerRequestInterface $request
-    ): ResponseInterface {
-        return (new \Relay\Relay($middlewareQueue))->handle($request);
     }
 }

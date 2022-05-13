@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+use Nanofraim\Application;
+use Nanofraim\Http\SapiEmitter;
 use Nanofraim\Init;
+use Relay\Relay;
 
 // set basePath and storagePath, referenced in configuration files
 $basePath = dirname(__DIR__);
@@ -10,9 +13,6 @@ $storagePath = $basePath.'/storage';
 
 // autoload
 require $basePath.'/vendor/autoload.php';
-
-// run Init::setup before initializing anything else
-Init::setup();
 
 // load environment file if one exists, keeping existing variables
 Init::loadDotEnv($basePath.'/.env');
@@ -37,4 +37,20 @@ $middlewareQueue = Init::createMiddlewareQueue(
     $config['middleware'],
 );
 
-return $middlewareQueue;
+// .....
+$psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
+
+$app = new Application(
+    $configContainer,
+    $serviceContainer,
+    new Relay($middlewareQueue),
+    new SapiEmitter(),
+    new \Nyholm\Psr7Server\ServerRequestCreator(
+        $psr17Factory,
+        $psr17Factory,
+        $psr17Factory,
+        $psr17Factory,
+    ),
+);
+
+return $app;

@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-// bootstrap the application and create the middleware queue
-$middlewareQueue = require '../bootstrap/bootstrap.php';
+// bootstrap the application
+require '../bootstrap/bootstrap.php';
 
-// create a server request and run it through the middleware queue to get a response
-$response = \Nanofraim\Init::runMiddlewareQueue(
-    $middlewareQueue,
-    \Nanofraim\Init::createServerRequest()
+// create server request from globals, handle it via the middleware queue
+// and emit a response
+$app->emit(
+    $app->handle(
+        $app->createServerRequestFromGlobals()
+    )
 );
-
-// emit response
-(new \Nanofraim\Http\SapiEmitter())->emit($response);
