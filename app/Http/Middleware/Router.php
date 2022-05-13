@@ -11,7 +11,10 @@ use Nanofraim\Trait\ServiceContainerAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Log\LoggerInterface;
+use Psr\SimpleCache\CacheInterface;
 use Tomrf\Autowire\Container;
+use Tomrf\Session\Session;
 
 class Router extends AbstractMiddleware implements ServiceContainerAwareInterface
 {
@@ -47,7 +50,23 @@ class Router extends AbstractMiddleware implements ServiceContainerAwareInterfac
             [$container, $this->serviceContainer]
         );
 
-        $this->serviceContainer->fulfillAwarenessTraits($controller);
+        foreach (class_uses($controller) as $trait) {
+            if ('Nanofraim\Trait\ServiceContainerAwareTrait' === $trait) {
+                $controller->setServiceContainer($this->serviceContainer);
+            }
+
+            if ('Psr\Log\LoggerAwareTrait' === $trait) {
+                $controller->setLogger($this->serviceContainer->get(LoggerInterface::class));
+            }
+
+            if ('Nanofraim\Trait\SessionAwareTrait' === $trait) {
+                $controller->setSession($this->serviceContainer->get(Session::class));
+            }
+
+            if ('Nanofraim\Trait\CacheAwareTrait' === $trait) {
+                $controller->setCache($this->serviceContainer->get(CacheInterface::class));
+            }
+        }
 
         return $controller->{$method}();
     }

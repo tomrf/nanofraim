@@ -85,7 +85,7 @@ switch ($command) {
             for ($n = 0; $n < $count; ++$n) {
                 $timetamp = microtime(true);
 
-                $middlewareQueue = require '../bootstrap/bootstrap.php';
+                $app = require '../bootstrap/bootstrap.php';
 
                 $response = $app->handle(
                     $app->createServerRequestFromGlobals()
@@ -93,6 +93,8 @@ switch ($command) {
 
                 $status = $response->getStatusCode();
                 $body = $response->getBody();
+
+                unset($app);
 
                 // stat time
                 $requestTime = (microtime(true) - (float) $timetamp) * 1000;
