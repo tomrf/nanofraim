@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// bootstrap the application
+/** @var Nanofraim\Application */
 $app = require '../bootstrap/bootstrap.php';
 
 // create server request from globals, handle it via the middleware queue
