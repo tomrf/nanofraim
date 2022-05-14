@@ -14,16 +14,6 @@ use Tomrf\Session\Session;
 
 class Init
 {
-    public static function loadDotEnv(string $path): void
-    {
-        if (file_exists($path)) {
-            $env = parse_ini_file($path, true, INI_SCANNER_TYPED);
-            foreach ($env as $key => $value) {
-                $_ENV[$key] = $value;
-            }
-        }
-    }
-
     public static function createMiddlewareQueue(
         ServiceContainer $serviceContainer,
         array $middleware,
