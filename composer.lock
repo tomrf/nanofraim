@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03e1a10101d3b3e4e0932f1a964e0d76",
+    "content-hash": "d97449aa5b6756481ed28b23e7722451",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1436,16 +1436,16 @@
         },
         {
             "name": "tomrf/configcontainer",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/configcontainer.git",
-                "reference": "ba92176ee60418471369929282c321bf464b6462"
+                "reference": "ff8c0c4eab0356d0546e1a02a68d2b8c3fe108e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/configcontainer/zipball/ba92176ee60418471369929282c321bf464b6462",
-                "reference": "ba92176ee60418471369929282c321bf464b6462",
+                "url": "https://api.github.com/repos/tomrf/configcontainer/zipball/ff8c0c4eab0356d0546e1a02a68d2b8c3fe108e0",
+                "reference": "ff8c0c4eab0356d0546e1a02a68d2b8c3fe108e0",
                 "shasum": ""
             },
             "require": {
@@ -1454,6 +1454,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8",
+                "phpmd/phpmd": "^2.12",
                 "phpstan/phpstan": "^1.6",
                 "phpunit/phpunit": "^9.5",
                 "roave/security-advisories": "dev-latest"
@@ -1475,9 +1476,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/configcontainer/issues",
-                "source": "https://github.com/tomrf/configcontainer/tree/0.0.2"
+                "source": "https://github.com/tomrf/configcontainer/tree/0.0.3"
             },
-            "time": "2022-05-02T23:51:51+00:00"
+            "time": "2022-05-14T00:58:13+00:00"
         },
         {
             "name": "tomrf/logger",
