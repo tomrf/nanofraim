@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d97449aa5b6756481ed28b23e7722451",
+    "content-hash": "fbee38ab7d04f6a15b100af6536be31c",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1436,16 +1436,16 @@
         },
         {
             "name": "tomrf/configcontainer",
-            "version": "0.0.3",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/configcontainer.git",
-                "reference": "ff8c0c4eab0356d0546e1a02a68d2b8c3fe108e0"
+                "reference": "94104b21eb08789aabde78a7c61b5f83b57de87e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/configcontainer/zipball/ff8c0c4eab0356d0546e1a02a68d2b8c3fe108e0",
-                "reference": "ff8c0c4eab0356d0546e1a02a68d2b8c3fe108e0",
+                "url": "https://api.github.com/repos/tomrf/configcontainer/zipball/94104b21eb08789aabde78a7c61b5f83b57de87e",
+                "reference": "94104b21eb08789aabde78a7c61b5f83b57de87e",
                 "shasum": ""
             },
             "require": {
@@ -1476,9 +1476,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/configcontainer/issues",
-                "source": "https://github.com/tomrf/configcontainer/tree/0.0.3"
+                "source": "https://github.com/tomrf/configcontainer/tree/0.0.4"
             },
-            "time": "2022-05-14T00:58:13+00:00"
+            "time": "2022-05-14T01:44:21+00:00"
         },
         {
             "name": "tomrf/logger",

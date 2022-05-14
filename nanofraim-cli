@@ -5,6 +5,10 @@ if (PHP_SAPI !== 'cli') {
     error('SAPI name is not cli -- must run from command line');
 }
 
+if (!is_dir('public/')) {
+    error('unable to chdir to public/ -- must run from project root');
+}
+
 $options = getopt('', [], $optind);
 $command = $argv[$optind + 0] ?? null;
 
@@ -14,10 +18,13 @@ switch ($command) {
 
         exit(1);
 
+    case 'config':
+        require_once 'bootstrap/bootstrap.php';
+        print_r($configContainer->getNode('phpIni'));
+
+        exit(0);
+
     case 'server':
-        if (!is_dir('public/')) {
-            error('unable to chdir to public/ -- must run from project root');
-        }
         chdir('public/');
         system(sprintf(
             'php -S %s:%s',

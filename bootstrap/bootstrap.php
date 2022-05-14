@@ -6,7 +6,6 @@ use Nanofraim\AbstractProvider;
 use Nanofraim\Application;
 use Nanofraim\DotEnv;
 use Nanofraim\Http\SapiEmitter;
-use Nanofraim\Init;
 use Psr\Http\Server\MiddlewareInterface;
 use Relay\Relay;
 use Tomrf\Autowire\Autowire;
@@ -34,16 +33,10 @@ $configContainer = new ConfigContainer(
 $configContainer->setPhpIniFromNode('phpIni');
 
 // create ServiceContainer
-// $serviceContainer = Init::createServiceContainer(
-//     $configContainer,
-// );
 $serviceContainer = new ServiceContainer(new Autowire());
 
-// $serviceContainer->add(ConfigContainer::class, $configContainer);
-// $serviceContainer->add(Autowire::class, new Autowire());
-
+// add services and middleware to ServiceContainer
 $providers = $configContainer->getNode('providers');
-
 $classes = array_merge(
     array_keys($providers),
     $configContainer->getNode('middleware')
