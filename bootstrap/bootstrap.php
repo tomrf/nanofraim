@@ -30,16 +30,21 @@ $configContainer = new ConfigContainer(
 );
 
 // set PHP ini options
-$configContainer->setPhpIniFromNode('phpIni');
+foreach ($configContainer->search('/phpIni\\..*/') as $key => $value) {
+    $oldValue = ini_set(substr($key, 7), $value);
+    if (false === $oldValue) {
+        throw new RuntimeException(sprintf('Failed to set php ini option "%s"', $key));
+    }
+}
 
 // create ServiceContainer
 $serviceContainer = new ServiceContainer(new Autowire());
 
 // add services and middleware to ServiceContainer
-$providers = $configContainer->getNode('providers');
+$providers = $configContainer->get('providers');
 $classes = array_merge(
     array_keys($providers),
-    $configContainer->getNode('middleware')
+    $configContainer->get('middleware')
 );
 
 foreach ($classes as $class) {
@@ -67,7 +72,7 @@ $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
 $app = new Application(
     $configContainer,
     $serviceContainer,
-    new Relay($configContainer->getNode('middleware'), function ($class) use ($serviceContainer): MiddlewareInterface {
+    new Relay($configContainer->get('middleware'), function ($class) use ($serviceContainer): MiddlewareInterface {
         $instance = $serviceContainer->get($class);
 
         $serviceContainer->fulfillAwarenessTraits(
