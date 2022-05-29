@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Nanofraim\AbstractProvider;
 use Nanofraim\Application;
 use Nanofraim\DotEnv;
-use Nanofraim\Http\SapiEmitter;
+use Nanofraim\Http\ResponseEmitter;
 use Psr\Http\Server\MiddlewareInterface;
 use Relay\Relay;
 use Tomrf\Autowire\Autowire;
@@ -69,39 +69,44 @@ foreach ($classes as $class) {
 // .....
 $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
 
+$responseEmitter = new ResponseEmitter();
+
+$serverRequestCreator = new \Nyholm\Psr7Server\ServerRequestCreator(
+    $psr17Factory,
+    $psr17Factory,
+    $psr17Factory,
+    $psr17Factory,
+);
+
+$relay = new Relay($configContainer->get('middleware'), function ($class) use ($serviceContainer): MiddlewareInterface {
+    $instance = $serviceContainer->get($class);
+
+    $serviceContainer->fulfillAwarenessTraits(
+        $instance,
+        [
+            'Nanofraim\Trait\ServiceContainerAwareTrait' => [
+                'setServiceContainer' => fn () => $serviceContainer,
+            ],
+            'Psr\Log\LoggerAwareTrait' => [
+                'setLogger' => LoggerInterface::class,
+            ],
+            'Nanofraim\Trait\CacheAwareTrait' => [
+                'setCache' => CacheInterface::class,
+            ],
+            'Nanofraim\Trait\SessionAwareTrait' => [
+                'setSession' => Session::class,
+            ],
+        ]
+    );
+
+    return $instance;
+});
+
 $app = new Application(
-    $configContainer,
     $serviceContainer,
-    new Relay($configContainer->get('middleware'), function ($class) use ($serviceContainer): MiddlewareInterface {
-        $instance = $serviceContainer->get($class);
-
-        $serviceContainer->fulfillAwarenessTraits(
-            $instance,
-            [
-                'Nanofraim\Trait\ServiceContainerAwareTrait' => [
-                    'setServiceContainer' => fn () => $serviceContainer,
-                ],
-                'Psr\Log\LoggerAwareTrait' => [
-                    'setLogger' => LoggerInterface::class,
-                ],
-                'Nanofraim\Trait\CacheAwareTrait' => [
-                    'setCache' => CacheInterface::class,
-                ],
-                'Nanofraim\Trait\SessionAwareTrait' => [
-                    'setSession' => Session::class,
-                ],
-            ]
-        );
-
-        return $instance;
-    }),
-    new SapiEmitter(),
-    new \Nyholm\Psr7Server\ServerRequestCreator(
-        $psr17Factory,
-        $psr17Factory,
-        $psr17Factory,
-        $psr17Factory,
-    ),
+    $relay,
+    $responseEmitter,
+    $serverRequestCreator,
 );
 
 return $app;

@@ -18,6 +18,7 @@
         "tomrf/servicecontainer": "^0.0.7",
         "tomrf/logger": "^0.0.2",
         "tomrf/session": "^0.0.1",
+        "tomrf/http-emitter": "^0.0.1",
         "nyholm/psr7-server": "^1.0",
         "nyholm/psr7": "^1.5",
         "relay/relay": "^2.1"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2aa50925e52e8fba5d735d767ec73ab",
+    "content-hash": "cd94faf4e38bcf5f09959c7cf57d8057",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1482,6 +1482,55 @@
             "time": "2022-05-28T17:22:55+00:00"
         },
         {
+            "name": "tomrf/http-emitter",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomrf/http-emitter.git",
+                "reference": "b3786b71adb6bccba6be3fdcbbb78b053f79fddb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomrf/http-emitter/zipball/b3786b71adb6bccba6be3fdcbbb78b053f79fddb",
+                "reference": "b3786b71adb6bccba6be3fdcbbb78b053f79fddb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.19",
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "nyholm/psr7": "^1.5",
+                "nyholm/psr7-server": "^1.0",
+                "phpmd/phpmd": "^2.12",
+                "phpstan/phpstan": "^1.6",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tomrf\\HttpEmitter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "http-emitter",
+            "homepage": "http://github.com/tomrf/http-emitter",
+            "keywords": [
+                "http-emitter"
+            ],
+            "support": {
+                "issues": "https://github.com/tomrf/http-emitter/issues",
+                "source": "https://github.com/tomrf/http-emitter/tree/0.0.1"
+            },
+            "time": "2022-05-29T17:08:32+00:00"
+        },
+        {
             "name": "tomrf/logger",
             "version": "0.0.2",
             "source": {
@@ -2657,16 +2706,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.7.2",
+            "version": "1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c602f80d66ba425943b0f4aaa27010c822dd8f87"
+                "reference": "48c4621b1a6dde32aab2e9a79658b843ffb614f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c602f80d66ba425943b0f4aaa27010c822dd8f87",
-                "reference": "c602f80d66ba425943b0f4aaa27010c822dd8f87",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/48c4621b1a6dde32aab2e9a79658b843ffb614f7",
+                "reference": "48c4621b1a6dde32aab2e9a79658b843ffb614f7",
                 "shasum": ""
             },
             "require": {
@@ -2692,7 +2741,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.7.2"
+                "source": "https://github.com/phpstan/phpstan/tree/1.7.3"
             },
             "funding": [
                 {
@@ -2712,7 +2761,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-26T12:59:20+00:00"
+            "time": "2022-05-29T11:36:09+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
