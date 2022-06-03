@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 use Nanofraim\AbstractProvider;
 use Nanofraim\Application;
-use Nanofraim\DotEnv;
 use Nanofraim\Http\ResponseEmitter;
 use Psr\Http\Server\MiddlewareInterface;
 use Relay\Relay;
 use Tomrf\Autowire\Autowire;
 use Tomrf\ConfigContainer\ConfigContainer;
+use Tomrf\DotEnv\DotEnvLoader;
 use Tomrf\ServiceContainer\ServiceContainer;
 use Tomrf\ServiceContainer\ServiceFactory;
 use Tomrf\Session\Session;
@@ -22,7 +22,9 @@ $storagePath = $basePath.'/storage';
 require $basePath.'/vendor/autoload.php';
 
 // load environment file if one exists, keeping existing variables
-DotEnv::loadDotEnv($basePath.'/.env');
+if (file_exists($basePath.'/.env')) {
+    (new DotEnvLoader())->loadImmutable($basePath.'/.env');
+}
 
 // load configuration, create ConfigContainer
 $configContainer = new ConfigContainer(
