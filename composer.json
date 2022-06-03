@@ -22,7 +22,8 @@
         "tomrf/logger": "^0.0.2",
         "tomrf/session": "^0.0.1",
         "tomrf/http-emitter": "^0.0.1",
-        "tomrf/dotenv": "^0.0.1"
+        "tomrf/dotenv": "^0.0.1",
+        "tomrf/php-options": "^0.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",

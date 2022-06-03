@@ -32,11 +32,9 @@ $configContainer = new ConfigContainer(
 );
 
 // set PHP ini options
+$phpOptions = new \Tomrf\PhpOptions\PhpOptions();
 foreach ($configContainer->search('/phpIni\\..*/') as $key => $value) {
-    $oldValue = ini_set(substr($key, 7), $value);
-    if (false === $oldValue) {
-        throw new RuntimeException(sprintf('Failed to set php ini option "%s"', $key));
-    }
+    $phpOptions->set(substr($key, 7), $value);
 }
 
 // create ServiceContainer

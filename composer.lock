@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67a45c3b59aa669b09c5d439e3d76159",
+    "content-hash": "9493c7172c9fd047cf72b2873de3ae23",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1628,6 +1628,51 @@
                 "source": "https://github.com/tomrf/logger/tree/0.0.2"
             },
             "time": "2022-05-08T20:12:52+00:00"
+        },
+        {
+            "name": "tomrf/php-options",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomrf/php-options.git",
+                "reference": "03b0817e50767b5ee6297f200d67a39c87addfcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomrf/php-options/zipball/03b0817e50767b5ee6297f200d67a39c87addfcb",
+                "reference": "03b0817e50767b5ee6297f200d67a39c87addfcb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "phpmd/phpmd": "^2.12",
+                "phpstan/phpstan": "^1.6",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tomrf\\PhpOptions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "php-options",
+            "homepage": "http://github.com/tomrf/php-options",
+            "keywords": [
+                "php-options"
+            ],
+            "support": {
+                "issues": "https://github.com/tomrf/php-options/issues",
+                "source": "https://github.com/tomrf/php-options/tree/0.0.1"
+            },
+            "time": "2022-05-29T23:08:11+00:00"
         },
         {
             "name": "tomrf/servicecontainer",
