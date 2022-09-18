@@ -20,16 +20,15 @@ switch ($command) {
 
     case 'config':
         require_once 'bootstrap/bootstrap.php';
-        foreach ($configContainer->query('*') as $key => $value) {
+        foreach ($configContainer->search('//') as $key => $value) {
             echo sprintf('%s: (%s) %s', $key, gettype($value), null === $value ? '-' : $value).PHP_EOL;
         }
 
         exit(0);
 
     case 'server':
-        chdir('public/');
         system(sprintf(
-            'php -S %s:%s',
+            'php -S %s:%s -t public/',
             $argv[$optind + 1] ?? 'localhost',
             $argv[$optind + 2] ?? '0'
         ));
