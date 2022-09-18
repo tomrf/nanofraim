@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "548287582852c0d6f142a86034d38fd1",
+    "content-hash": "a3d8cc4a7354a00dd384c67a2a80e07a",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1457,16 +1457,16 @@
         },
         {
             "name": "tomrf/configcontainer",
-            "version": "0.0.6",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/configcontainer.git",
-                "reference": "7e71a0711ffaeadaf5f647f915556d2fd6d57330"
+                "reference": "f8ae961967b1158ee56a611fa36a7706b1a3e370"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/configcontainer/zipball/7e71a0711ffaeadaf5f647f915556d2fd6d57330",
-                "reference": "7e71a0711ffaeadaf5f647f915556d2fd6d57330",
+                "url": "https://api.github.com/repos/tomrf/configcontainer/zipball/f8ae961967b1158ee56a611fa36a7706b1a3e370",
+                "reference": "f8ae961967b1158ee56a611fa36a7706b1a3e370",
                 "shasum": ""
             },
             "require": {
@@ -1498,22 +1498,22 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/configcontainer/issues",
-                "source": "https://github.com/tomrf/configcontainer/tree/0.0.6"
+                "source": "https://github.com/tomrf/configcontainer/tree/0.1.0"
             },
-            "time": "2022-05-28T17:22:55+00:00"
+            "time": "2022-09-18T16:47:51+00:00"
         },
         {
             "name": "tomrf/dotenv",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/dotenv.git",
-                "reference": "c8bc1ca70f9b7211d847b76a9c4574bed993bfcd"
+                "reference": "5b1346d4014f616a0d9789695f09a367c1f867e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/dotenv/zipball/c8bc1ca70f9b7211d847b76a9c4574bed993bfcd",
-                "reference": "c8bc1ca70f9b7211d847b76a9c4574bed993bfcd",
+                "url": "https://api.github.com/repos/tomrf/dotenv/zipball/5b1346d4014f616a0d9789695f09a367c1f867e2",
+                "reference": "5b1346d4014f616a0d9789695f09a367c1f867e2",
                 "shasum": ""
             },
             "require": {
@@ -1524,9 +1524,26 @@
                 "phpmd/phpmd": "^2.12",
                 "phpstan/phpstan": "^1.6",
                 "phpunit/phpunit": "^9.5",
-                "roave/security-advisories": "dev-latest"
+                "roave/security-advisories": "dev-latest",
+                "tomrf/readme-gen": "^0.0"
             },
             "type": "library",
+            "extra": {
+                "intro": [
+                    "Load environment variables from dotenv file using the PHP built-in parse_ini_file() function",
+                    "with scanner mode `INI_SCANNER_TYPED` (See [PHP manual](https://www.php.net/manual/en/function.parse-ini-file.php))",
+                    "",
+                    "It is a simple, reliable and super fast way to load dotenv files without any bells and whistles."
+                ],
+                "example": [
+                    "$dotEnvLoader = new \\Tomrf\\DotEnv\\DotEnvLoader();",
+                    "",
+                    "$dotEnvLoader->loadImmutable(__DIR__ . '/.env');    // loadImmutable() will not overwrite existing",
+                    "                                                    // environment variables",
+                    "",
+                    "$dotEnvLoader->load('/path/to/dotenv/file');        // load() will overwrite existing environment variables"
+                ]
+            },
             "autoload": {
                 "psr-4": {
                     "Tomrf\\DotEnv\\": "src/"
@@ -1535,6 +1552,13 @@
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Rune Flo",
+                    "email": "tom@x86.no",
+                    "homepage": "http://github.com/tomrf/"
+                }
             ],
             "description": "simple dotenv file loader using the built-in parse_ini_file()",
             "homepage": "http://github.com/tomrf/dotenv",
@@ -1546,22 +1570,22 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/dotenv/issues",
-                "source": "https://github.com/tomrf/dotenv/tree/0.0.1"
+                "source": "https://github.com/tomrf/dotenv/tree/0.0.2"
             },
-            "time": "2022-06-02T23:53:15+00:00"
+            "time": "2022-07-10T00:07:08+00:00"
         },
         {
             "name": "tomrf/http-emitter",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/http-emitter.git",
-                "reference": "b3786b71adb6bccba6be3fdcbbb78b053f79fddb"
+                "reference": "1e46b8b288308643eee77d6c598d2b97f1db1e51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/http-emitter/zipball/b3786b71adb6bccba6be3fdcbbb78b053f79fddb",
-                "reference": "b3786b71adb6bccba6be3fdcbbb78b053f79fddb",
+                "url": "https://api.github.com/repos/tomrf/http-emitter/zipball/1e46b8b288308643eee77d6c598d2b97f1db1e51",
+                "reference": "1e46b8b288308643eee77d6c598d2b97f1db1e51",
                 "shasum": ""
             },
             "require": {
@@ -1576,9 +1600,19 @@
                 "phpmd/phpmd": "^2.12",
                 "phpstan/phpstan": "^1.6",
                 "phpunit/phpunit": "^9.5",
-                "roave/security-advisories": "dev-latest"
+                "roave/security-advisories": "dev-latest",
+                "tomrf/readme-gen": "^0.0.5"
             },
             "type": "library",
+            "extra": {
+                "intro": [
+                    "Simple PSR-7 response emitter with sensible CLI SAPI output"
+                ],
+                "example": [
+                    "$httpEmitter = new HttpEmitter();",
+                    "$httpEmitter->emit($response); // PSR-7 response object"
+                ]
+            },
             "autoload": {
                 "psr-4": {
                     "Tomrf\\HttpEmitter\\": "src/"
@@ -1588,16 +1622,21 @@
             "license": [
                 "MIT"
             ],
-            "description": "http-emitter",
+            "description": "PSR-7 response emitter",
             "homepage": "http://github.com/tomrf/http-emitter",
             "keywords": [
-                "http-emitter"
+                "cli-sapi",
+                "http",
+                "http-message",
+                "psr-7",
+                "response-emitter",
+                "sapi"
             ],
             "support": {
                 "issues": "https://github.com/tomrf/http-emitter/issues",
-                "source": "https://github.com/tomrf/http-emitter/tree/0.0.1"
+                "source": "https://github.com/tomrf/http-emitter/tree/0.0.2"
             },
-            "time": "2022-05-29T17:08:32+00:00"
+            "time": "2022-06-15T21:04:44+00:00"
         },
         {
             "name": "tomrf/logger",
@@ -1649,6 +1688,69 @@
                 "source": "https://github.com/tomrf/logger/tree/0.0.2"
             },
             "time": "2022-05-08T20:12:52+00:00"
+        },
+        {
+            "name": "tomrf/nanofraim-core",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomrf/nanofraim-core.git",
+                "reference": "ffdbd502cf45da0f6b9cbf09fbc71fdc883c5385"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomrf/nanofraim-core/zipball/ffdbd502cf45da0f6b9cbf09fbc71fdc883c5385",
+                "reference": "ffdbd502cf45da0f6b9cbf09fbc71fdc883c5385",
+                "shasum": ""
+            },
+            "require": {
+                "cache/array-adapter": "^1.2",
+                "cache/filesystem-adapter": "^1.2",
+                "cache/redis-adapter": "^1.1",
+                "cache/simple-cache-bridge": "^1.2",
+                "cache/void-adapter": "^1.2",
+                "nyholm/psr7": "^1.5",
+                "nyholm/psr7-server": "^1.0",
+                "php": "^8.0",
+                "psr/container": "^2.0",
+                "relay/relay": "^2.1",
+                "tomrf/autowire": "^0.1",
+                "tomrf/configcontainer": "^0.1",
+                "tomrf/dotenv": "^0.0.2",
+                "tomrf/http-emitter": "^0.0.2",
+                "tomrf/logger": "^0.0.2",
+                "tomrf/php-options": "^0.0.1",
+                "tomrf/servicecontainer": "^0.1",
+                "tomrf/session": "^0.0.1"
+            },
+            "require-dev": {
+                "bmitch/churn-php": "^1.7",
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "phpmd/phpmd": "^2.12",
+                "phpstan/phpstan": "^1.6",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nanofraim\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "nanofraim core library",
+            "homepage": "http://github.com/tomrf/nanofraim-core",
+            "keywords": [
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/tomrf/nanofraim-core/issues",
+                "source": "https://github.com/tomrf/nanofraim-core/tree/0.0.1"
+            },
+            "time": "2022-09-18T17:04:06+00:00"
         },
         {
             "name": "tomrf/php-options",
