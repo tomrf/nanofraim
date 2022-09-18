@@ -1691,16 +1691,16 @@
         },
         {
             "name": "tomrf/nanofraim-core",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/nanofraim-core.git",
-                "reference": "ffdbd502cf45da0f6b9cbf09fbc71fdc883c5385"
+                "reference": "b28367a5fac8f3e513b1adae070fdb788bcadbd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/nanofraim-core/zipball/ffdbd502cf45da0f6b9cbf09fbc71fdc883c5385",
-                "reference": "ffdbd502cf45da0f6b9cbf09fbc71fdc883c5385",
+                "url": "https://api.github.com/repos/tomrf/nanofraim-core/zipball/b28367a5fac8f3e513b1adae070fdb788bcadbd3",
+                "reference": "b28367a5fac8f3e513b1adae070fdb788bcadbd3",
                 "shasum": ""
             },
             "require": {
@@ -1748,9 +1748,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/nanofraim-core/issues",
-                "source": "https://github.com/tomrf/nanofraim-core/tree/0.0.1"
+                "source": "https://github.com/tomrf/nanofraim-core/tree/0.0.2"
             },
-            "time": "2022-09-18T17:04:06+00:00"
+            "time": "2022-09-18T17:19:40+00:00"
         },
         {
             "name": "tomrf/php-options",

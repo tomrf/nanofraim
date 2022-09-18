@@ -7,7 +7,7 @@ return [
     'basePath' => $basePath,
     'middleware' => [
         \App\Http\Middleware\Headers::class,
-        \App\Http\Middleware\Session::class,
+        // \App\Http\Middleware\Session::class,
         \App\Http\Middleware\Router::class,
         \App\Http\Middleware\NotFound::class,
     ],
