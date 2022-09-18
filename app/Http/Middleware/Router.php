@@ -13,7 +13,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
-use Tomrf\Autowire\Container;
+use Tomrf\ConfigContainer\Container;
 use Tomrf\Session\Session;
 
 class Router extends AbstractMiddleware implements ServiceContainerAwareInterface
@@ -46,8 +46,8 @@ class Router extends AbstractMiddleware implements ServiceContainerAwareInterfac
 
         $controller = $this->serviceContainer->autowire()->instantiateClass(
             $class,
-            '__construct',
-            [$container, $this->serviceContainer]
+            $container,
+            $this->serviceContainer
         );
 
         $this->serviceContainer->fulfillAwarenessTraits(

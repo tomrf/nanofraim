@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9493c7172c9fd047cf72b2873de3ae23",
+    "content-hash": "548287582852c0d6f142a86034d38fd1",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -1387,29 +1387,43 @@
         },
         {
             "name": "tomrf/autowire",
-            "version": "0.0.5",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/autowire.git",
-                "reference": "e0434c9041302dab9a1d78a57cad684e6227038b"
+                "reference": "98da71e047fefff50582410cfd26a7cb0b65c7a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/autowire/zipball/e0434c9041302dab9a1d78a57cad684e6227038b",
-                "reference": "e0434c9041302dab9a1d78a57cad684e6227038b",
+                "url": "https://api.github.com/repos/tomrf/autowire/zipball/98da71e047fefff50582410cfd26a7cb0b65c7a8",
+                "reference": "98da71e047fefff50582410cfd26a7cb0b65c7a8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
+                "php": "^8.0",
                 "psr/container": "^2.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8",
+                "phpmd/phpmd": "^2.12",
                 "phpstan/phpstan": "^1.6",
                 "phpunit/phpunit": "^9.5",
-                "roave/security-advisories": "dev-latest"
+                "roave/security-advisories": "dev-latest",
+                "tomrf/readme-gen": "^0.0"
             },
             "type": "library",
+            "extra": {
+                "intro": [
+                    "A simple PHP library that facilitates autowired dependency injection by fetching class constructor dependencies from one or more PSR-11 containers.",
+                    "",
+                    "Autowire uses the PHP reflection API to peek at constructor parameter types and injects required and optional dependencies from assigned containers."
+                ],
+                "example": [
+                    "$autowire = new \\Tomrf\\Autowire\\Autowire();",
+                    "",
+                    "$instance = $autowire->instantiateClass(MyClassWithDependencies::class, $container);"
+                ]
+            },
             "autoload": {
                 "psr-4": {
                     "Tomrf\\Autowire\\": "src/"
@@ -1419,20 +1433,27 @@
             "license": [
                 "MIT"
             ],
+            "authors": [
+                {
+                    "name": "Tom Rune Flo",
+                    "email": "tom@x86.no",
+                    "homepage": "http://github.com/tomrf/"
+                }
+            ],
             "description": "autowire dependency injection from PSR-11 containers",
             "homepage": "http://github.com/tomrf/autowire",
             "keywords": [
                 "PSR-11",
                 "autowire",
-                "containers",
+                "container",
                 "dependency injection",
-                "di"
+                "reflection"
             ],
             "support": {
                 "issues": "https://github.com/tomrf/autowire/issues",
-                "source": "https://github.com/tomrf/autowire/tree/0.0.5"
+                "source": "https://github.com/tomrf/autowire/tree/0.1.0"
             },
-            "time": "2022-04-30T14:44:24+00:00"
+            "time": "2022-06-27T23:41:25+00:00"
         },
         {
             "name": "tomrf/configcontainer",
@@ -1676,22 +1697,22 @@
         },
         {
             "name": "tomrf/servicecontainer",
-            "version": "0.0.7",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomrf/servicecontainer.git",
-                "reference": "f2661fe9343241a840120cde4c5e534c63d619ce"
+                "reference": "a7599c20bf9107e61df74deda3af69279e43eac5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/f2661fe9343241a840120cde4c5e534c63d619ce",
-                "reference": "f2661fe9343241a840120cde4c5e534c63d619ce",
+                "url": "https://api.github.com/repos/tomrf/servicecontainer/zipball/a7599c20bf9107e61df74deda3af69279e43eac5",
+                "reference": "a7599c20bf9107e61df74deda3af69279e43eac5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.0",
                 "psr/container": "^2.0",
-                "tomrf/autowire": "^0.0.5"
+                "tomrf/autowire": "^0.1"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8",
@@ -1717,9 +1738,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tomrf/servicecontainer/issues",
-                "source": "https://github.com/tomrf/servicecontainer/tree/0.0.7"
+                "source": "https://github.com/tomrf/servicecontainer/tree/0.1.0"
             },
-            "time": "2022-05-13T17:12:49+00:00"
+            "time": "2022-09-18T15:23:40+00:00"
         },
         {
             "name": "tomrf/session",
