@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use Nanofraim\Http\AbstractMiddleware;
-use Nanofraim\Interface\SessionAwareInterface;
-use Nanofraim\Trait\SessionAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Tomrf\Logger\Logger;
 
-class Session extends AbstractMiddleware implements SessionAwareInterface
+class Session extends AbstractMiddleware
 {
-    use SessionAwareTrait;
+    public function __construct(
+        private \Tomrf\Session\Session $session,
+        private Logger $logger,
+    ) {}
 
     public function process(
         ServerRequestInterface $request,
@@ -23,7 +25,7 @@ class Session extends AbstractMiddleware implements SessionAwareInterface
             try {
                 $this->session->startSession();
 
-                /** @var \Tomrf\Logger\Logger */
+                /** @var Logger */
                 $logger = $this->logger;
 
                 $logger->truncateStream();

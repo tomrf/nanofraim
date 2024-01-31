@@ -2,12 +2,16 @@
 
 declare(strict_types=1);
 
+use App\Http\Controller\TestController;
+use App\Service\DummyRouter;
 use Nanofraim\AbstractProvider;
 use Nanofraim\Application;
+use Nanofraim\Exception\FrameworkException;
 use Nanofraim\Http\ResponseEmitter;
 use Tomrf\Autowire\Autowire;
 use Tomrf\ConfigContainer\ConfigContainer;
 use Tomrf\DotEnv\DotEnvLoader;
+use Tomrf\PhpOptions\PhpOptions;
 use Tomrf\ServiceContainer\ServiceContainer;
 use Tomrf\ServiceContainer\ServiceFactory;
 
@@ -29,7 +33,7 @@ $configContainer = new ConfigContainer(
 );
 
 // set PHP ini options
-$phpOptions = new \Tomrf\PhpOptions\PhpOptions();
+$phpOptions = new PhpOptions();
 foreach ($configContainer->search('/phpIni\\..*/') as $key => $value) {
     $phpOptions->set(substr($key, 7), $value);
 }
@@ -47,10 +51,34 @@ foreach ($classes as $class) {
 
         $reflection = new ReflectionClass($serviceProvider);
 
+        /** @var ReflectionNamedType */
+        $returnType = $reflection->getMethod('createService')->getReturnType();
+
+        if (null === $returnType) {
+            throw new FrameworkException(
+                'Service provider '.$class.'::createService() must have a return type'
+            );
+        }
+
         $serviceContainer->add(
-            $reflection->getMethod('createService')->getReturnType()->getName(),
+            $returnType->getName(),
             $reflection->getMethod('createService')->getClosure($serviceProvider)
         );
+
+        continue;
+    }
+
+    // if class is Middleware\Router, set serviceContainer
+    if ('App\Http\Middleware\Router' === $class) {
+        $serviceContainer->add($class, function () use ($class, $serviceContainer, $configContainer, $providers) {
+            $router = new $class(new DummyRouter(new ConfigContainer(
+                $providers[\App\Service\DummyRouter::class]
+            )));
+
+            $router->setServiceContainer($serviceContainer);
+
+            return $router;
+        });
 
         continue;
     }

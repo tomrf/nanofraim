@@ -6,23 +6,26 @@ namespace App\Http\Middleware;
 
 use App\Service\DummyRouter;
 use Nanofraim\Http\AbstractMiddleware;
-use Nanofraim\Interface\ServiceContainerAwareInterface;
-use Nanofraim\Trait\ServiceContainerAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Tomrf\ConfigContainer\Container;
+use Tomrf\ServiceContainer\ServiceContainer;
 use Tomrf\Session\Session;
 
-class Router extends AbstractMiddleware implements ServiceContainerAwareInterface
+class Router extends AbstractMiddleware
 {
-    use ServiceContainerAwareTrait;
+    private ServiceContainer $serviceContainer;
 
     public function __construct(
         private DummyRouter $router,
-    ) {
+    ) {}
+
+    public function setServiceContainer(ServiceContainer $serviceContainer): void
+    {
+        $this->serviceContainer = $serviceContainer;
     }
 
     public function process(
